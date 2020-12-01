@@ -11,10 +11,10 @@ import com.example.course.entities.User;
 import com.example.course.repositories.UserRepository;
 
 @Configuration
-@Profile("test")
+@Profile("test") //essa classe serve para popular o banco de dados
 public class TestConfig implements CommandLineRunner{
 	
-	@Autowired
+	@Autowired //a anotacao autowired faz a injecao de dependencia
 	private UserRepository userRepository;
 
 	@Override
@@ -23,7 +23,7 @@ public class TestConfig implements CommandLineRunner{
 		User user1 = new User(0, "Jose das Couves", "jose@gmail.com", "555 0123" , "1234");
 		User user2 = new User(0, "Maria das Neves", "maria@gmail.com", "555 555" , "1234");
 		
-		userRepository.saveAll(Arrays.asList(user1, user2));
+		userRepository.saveAll(Arrays.asList(user1, user2)); //adciona os valores a uma lista
 		
 	}
 	
