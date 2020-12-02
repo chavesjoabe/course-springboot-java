@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.example.course.entities.Category;
 import com.example.course.entities.Order;
+import com.example.course.entities.OrderItem;
 import com.example.course.entities.Product;
 import com.example.course.entities.User;
 import com.example.course.entities.enums.OrderStatus;
 import com.example.course.repositories.CategoryRepository;
+import com.example.course.repositories.OrderItemRepository;
 import com.example.course.repositories.OrderRepository;
 import com.example.course.repositories.ProductRepository;
 import com.example.course.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -74,9 +79,12 @@ public class TestConfig implements CommandLineRunner{
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4,product5));//adiciona os produtos com as categorias
 		
 
+		OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+		OrderItem orderItem2 = new OrderItem(order1, product3, 1, product3.getPrice());
+		OrderItem orderItem3 = new OrderItem(order2, product3, 2, product3.getPrice());
+		OrderItem orderItem4 = new OrderItem(order3, product5, 2, product5.getPrice());
 		
-		
-
+		orderItemRepository.saveAll(Arrays.asList(orderItem1,orderItem2,orderItem3,orderItem4));
 		
 	}
 	
